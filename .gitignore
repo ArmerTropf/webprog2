@@ -4,3 +4,4 @@ build/
 .git/
 .classpath
 .project
+.tern-project
