@@ -1,5 +1,7 @@
 target/
 build/
-.git/
+.settings/
 
+.git/
 .classpath
+.project
