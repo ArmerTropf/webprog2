@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Farbe aussuchen</title>
 </head>
 <body
 	bgcolor="<% Cookie[] myCookies;
 			myCookies = request.getCookies();
-			if (myCookies != null) {
+			if (myCookies[0] != null) {
 				out.println(myCookies[0].getValue());
 			}%> ">
 			

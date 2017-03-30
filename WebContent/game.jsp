@@ -9,37 +9,33 @@
 <body
 	bgcolor="<%Cookie[] myCookies = null;
 			myCookies = request.getCookies();
-			int hit = 0;
-			for (int i = 0; i < myCookies.length; i++) {
-				out.println("name: " + myCookies[i].getName());
-				if (myCookies[i].getName() == "color") {
-					hit = 1;
+			if (myCookies != null) {
+				int hit = 0;
+				Cookie co = null;
+				for (int i = 0; i < myCookies.length; i++) {
+					if (myCookies[i].getName().equals("color")) {
+						hit = 1;
+						co = myCookies[i];
+					}
 				}
-			}
-			/* if (hit == 0)
-				
-				//response.sendRedirect("colorpicker.jsp");
-			else
-				out.println(myCookies[0].getValue()); */
-		
-				%>">
-	<form action="game.jsp" method="GET">
-		Click Image: <input type="image" name="myimage"
-			src="https://images-na.ssl-images-amazon.com/images/I/51SyNCviL7L.jpg"
-			width="600">
-	</form>
+				if (hit == 0)
+					response.sendRedirect("colorpicker.jsp");
+				else
+					out.println(co.getValue());
+			} else
+				response.sendRedirect("colorpicker.jsp");%>
+">
 	<%
-		session.setMaxInactiveInterval(2);
+		session.setMaxInactiveInterval(30);
 
 		if (session.isNew()) {
 			out.println("Neue Session\n");
 			session.setAttribute("punkte", 0);
-		} 
-		
-		if (request.getParameter("myimage.y") != null )  {
-			
-		
-			int aktuellePunkte = (int)session.getAttribute("punkte");
+		}
+
+		if (request.getParameter("myimage.y") != null) {
+
+			int aktuellePunkte = (int) session.getAttribute("punkte");
 			out.println("Aktuelle Punkte: " + session.getAttribute("punkte"));
 
 			if (aktuellePunkte == 3) {
@@ -48,12 +44,10 @@
 
 			String x = request.getParameter("myimage.x");
 			String y = request.getParameter("myimage.y");
-			
+
 			if (x.equals(y)) {
 				int pointsCounter = (Integer) session.getAttribute("punkte");
-				out.println("Vorhandene Punkte: " + pointsCounter);
 				pointsCounter++;
-				out.println("Neue Punkte: " + pointsCounter);
 				session.setAttribute("punkte", pointsCounter);
 
 			} else {
@@ -62,6 +56,13 @@
 
 		}
 	%>
+	<form action="game.jsp" method="GET">
+		<input type="image" name="myimage"
+			src="https://images-na.ssl-images-amazon.com/images/I/51SyNCviL7L.jpg"
+			width="500">
+	</form>
+
+
 
 </body>
 </html>

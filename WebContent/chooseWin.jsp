@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Gewinn aussuchen</title>
+<%
+	/* if ((int)session.getAttribute("punkte") != 1)
+	 	response.sendRedirect("colorpicker.jsp");*/
+%> 
 </head>
 <body>
-Gewiinn
+<h1>Bitte den Gewinn innherhalb von 30 Sekunden aussuchen....</h1>
+<a href="">Gewinn1</a>
+<a href="">Gewinn1</a>
+<a href="">Gewinn1</a>
 </body>
 </html>
