@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>The Game</title>
 </head>
 <body
 	bgcolor="<%Cookie[] myCookies = null;
@@ -28,10 +28,10 @@
 	<%
 		session.setMaxInactiveInterval(30);
 
-		if (session.isNew()) {
+	/* 	if (session.isNew()) {
 			out.println("Neue Session\n");
-			session.setAttribute("punkte", 0);
-		}
+			
+		} */
 
 		if (request.getParameter("myimage.y") != null) {
 
@@ -49,6 +49,7 @@
 				int pointsCounter = (Integer) session.getAttribute("punkte");
 				pointsCounter++;
 				session.setAttribute("punkte", pointsCounter);
+				out.println("Treffer");
 
 			} else {
 				out.println("KEIN Treffer");

@@ -7,11 +7,8 @@
 <title>Farbe aussuchen</title>
 </head>
 <body
-	bgcolor="<% Cookie[] myCookies;
-			myCookies = request.getCookies();
-			if (myCookies[0] != null) {
-				out.println(myCookies[0].getValue());
-			}%> ">
+	bgcolor="<% 
+			session.setAttribute("punkte", 0);%> ">
 			
 	<form action="colorpicker.jsp" method="GET">
 		Farbe aussuchen: <br>
