@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
 
 public class Aufgabe4_3 {
 
-	private String XML = "C:/Users/ArmerTropf/Documents/GitHub/webprog2/WebContent/aufgabe4/persons.xml";
+	private String XML = "C:/Users/ich/Documents/GitHub/webprog2/WebContent/aufgabe4/persons.xml";
 	private Map<String, String> names = new HashMap<String, String>();
 
 	public Aufgabe4_3() {
