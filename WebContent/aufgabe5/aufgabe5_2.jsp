@@ -1,3 +1,4 @@
+<%@ page import="aufgabe5.Aufgabe5_2"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <?xml version="1.0" encoding="UTF-8" ?>
 <html>
@@ -8,9 +9,9 @@
 <body>
 <H1>MyProperties</H1>
 	<table>
-		<jsp:useBean id="obj" class="aufgabe4.Aufgabe4_3" />
+		<jsp:useBean id="personsData" type="aufgabe5.PersonsDataBean" scope="request" />
 		
-		<c:forEach var="item" items="${obj.names }">
+		<c:forEach var="item" items="${personsData.names }">
 			<tr>
 				<td>${item.key}</td>
 				<td>${item.value}</td>
