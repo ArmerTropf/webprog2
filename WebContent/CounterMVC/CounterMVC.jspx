@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+<title />
+</head>
+<body>
+	<h1>Testing JSTL</h1>
+	<jsp:useBean id="bean" class="CounterMVC.ListBean" />
+	<h2>
+		1.
+		<code>array</code>
+		-Property
+	</h2>
+	<ul>
+		<c:forEach var="item" items="${bean.array}">
+			<li>${item}</li>
+		</c:forEach>
+	</ul>
+	<h2>
+		2. Indexing the
+		<code>array</code>
+		-Property
+	</h2>
+	<ul>
+		<c:forEach var="i" begin="1" end="4">
+			<li><code>array[${i}]</code>: ${bean.array[i]}</li>
+		</c:forEach>
+	</ul>
+	<h2>
+		3.
+		<code>enumeration</code>
+		-Property
+	</h2>
+	<ul>
+		<c:forEach var="item" items="${bean.enumeration}">
+			<li>${item}<c:if test="${(item mod 2)==0}">
+(gerade)
+</c:if>
+			</li>
+		</c:forEach>
+	</ul>
+</body>
+</html>

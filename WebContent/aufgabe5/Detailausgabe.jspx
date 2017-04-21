@@ -9,6 +9,16 @@
 </head>
 <body>
 <H1>MyProperties</H1>
-		<h2>asdasdasd ${personsData.test}</h2>
+
+		<table>
+		<jsp:useBean id="personsData" type="aufgabe5.PersonsDataBean" scope="request" />
+		
+		<c:forEach var="item" items="${personsData.names }">
+			<tr>
+				<td>${item.key}</td>
+				<td>${item.value}</td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>

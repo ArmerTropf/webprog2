@@ -12,49 +12,73 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import CounterMVC.InfoDataBean;
+import CounterMVC.ListDataBean;
+
 /**
  * Servlet implementation class Aufgabe5_2
  */
 @WebServlet("/Aufgabe5_2")
 public class Aufgabe5_2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   private PersonsBean persons;
-   
-    public Aufgabe5_2() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    public void init() throws ServletException{
-    	persons = new PersonsBean();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private PersonsBean persons;
+	private static final String ACTION = "ACTION";
+	private static final int SHOW_SYSTEM = 1;
+	private static final int SHOW_RANDOM = 2;
+	private String jsp;
+	int mode = 0;
+
+
+	public Aufgabe5_2() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void init() throws ServletException {
+
 		
-		// DataBean erzeugen
-		PersonsDataBean personsData = new PersonsDataBean(persons.getNames());
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String action = request.getParameter("action");	
+
+		System.out.println(action);
+
+		DataTierImp myData = new DataTierImp();
+		BusinessTierImp myBusiness = new BusinessTierImp();
 		
+		if (action == null) {
+			//persons = new PersonsBean();
+			myBusiness = new BusinessTierImp();
+			jsp = "./aufgabe5/Listenausgabe.jspx";
+			
+		} else {
+			//persons = new PersonsBean(action);
+			myBusiness = new BusinessTierImp(action);
+			jsp = "./aufgabe5/Detailausgabe.jspx";
+			
+		}
+		
+		PersonsDataBean personsData = new PersonsDataBean(myData.getNames(myBusiness.getBean())); 
+
 		request.setAttribute("personsData", personsData);
-		
-//		HttpSession session = request.getSession();
-//		session.setAttribute("personsData", personsData);
-		
-//		getServletContext.setAttribute("personsData", personsData);
-		
-		String jsp = "./aufgabe5/aufgabe5_2.jsp";
-		
+	
 		RequestDispatcher dispatcher = request.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
-		
-		
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

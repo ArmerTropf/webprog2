@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>webprog2</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>start</servlet-name>
+		<jsp-file>/aufgabe5/start.jspx</jsp-file>
+	</servlet>
+	<!--mapping -->
+	<servlet-mapping>
+		<servlet-name>start</servlet-name>
+		<url-pattern>/start/*</url-pattern>
+	</servlet-mapping >
+	
+	<servlet>
+		<servlet-name>listenausgabe</servlet-name>
+		<jsp-file>/aufgabe5/Listenausgabe.jspx</jsp-file>
+	</servlet>
+	<!--mapping -->
+	<servlet-mapping>
+		<servlet-name>listenausgabe</servlet-name>
+		<url-pattern>/listenausgabe/*</url-pattern>
+	</servlet-mapping >
+	
+	<servlet>
+		<servlet-name>detailausgabe</servlet-name>
+		<jsp-file>/aufgabe5/Detailausgabe.jspx</jsp-file>
+	</servlet>
+	<!--mapping -->
+	<servlet-mapping>
+		<servlet-name>detailausgabe</servlet-name>
+		<url-pattern>/detailausgabe/*</url-pattern>
+	</servlet-mapping >
+</web-app>

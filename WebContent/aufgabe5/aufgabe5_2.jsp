@@ -13,7 +13,7 @@
 		
 		<c:forEach var="item" items="${personsData.names }">
 			<tr>
-				<td>${item.key}</td>
+				<td> <a href="./Aufgabe5_2?action=${item.key}">${item.key}</a></td>
 				<td>${item.value}</td>
 			</tr>
 		</c:forEach>

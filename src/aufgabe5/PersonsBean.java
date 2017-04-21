@@ -6,6 +6,9 @@ import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,7 +20,15 @@ public class PersonsBean {
 	private String XML = "C:/Users/Pummi/Documents/GitHub/webprog2/WebContent/aufgabe5/persons.xml";
 	private Map<String, String> names = new HashMap<String, String>();
 
+	public PersonsBean(String parameter) {
+		searchUser(parameter);
+	}
+
 	public PersonsBean() {
+		searchUser("");
+	}
+
+	public void searchUser(String gogo) {
 		try {
 
 			File fXmlFile = new File(XML);
@@ -31,23 +42,68 @@ public class PersonsBean {
 
 			String vorname = "";
 			String nachname = "";
+			String residence = "";
+			String children = "";
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 
 				Node nNode = nList.item(temp);
 
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+				if (gogo != "") {
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element eElement = (Element) nNode;
 
-					Element eElement = (Element) nNode;
-					vorname = eElement.getElementsByTagName("firstname").item(0).getTextContent();
-					if (eElement.getElementsByTagName("lastname").item(0) != null) {
-						nachname = eElement.getElementsByTagName("lastname").item(0).getTextContent();
-					} 
-					else
-						nachname = "*";
+						// Vorname
+						vorname = eElement.getElementsByTagName("firstname").item(0).getTextContent();
 
+						if (vorname.equals(gogo)) {
+							names.put("vorname", vorname);
+							// nachname
+							if (eElement.getElementsByTagName("lastname").item(0) != null) {
+								nachname = eElement.getElementsByTagName("lastname").item(0).getTextContent();
+								names.put("nachname", nachname);
+							} else {
+								nachname = "*";
+								names.put("nachname", nachname);
+							}
+
+							if (eElement.getElementsByTagName("residence").item(0) != null) {
+								residence = eElement.getElementsByTagName("residence").item(0).getTextContent();
+								names.put("Wohnort", residence);
+							} else {
+								residence = "*";
+								names.put("Wohnort", residence);
+							}
+
+							// if
+							// (eElement.getElementsByTagName("children").item(0)
+							// != null) {
+							//
+							// if()
+							// names.put("Kind", children);
+							// }
+							// else {
+							// children = "*";
+							// names.put("Kind", children);
+							// }
+
+						}
+					}
+				} else {
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+						Element eElement = (Element) nNode;
+						vorname = eElement.getElementsByTagName("firstname").item(0).getTextContent();
+
+						if (eElement.getElementsByTagName("lastname").item(0) != null) {
+							nachname = eElement.getElementsByTagName("lastname").item(0).getTextContent();
+						} else
+							nachname = "*";
+
+					}
+					names.put(vorname, nachname);
 				}
-				names.put(vorname, nachname);
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
