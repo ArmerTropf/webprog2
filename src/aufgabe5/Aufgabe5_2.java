@@ -1,6 +1,10 @@
 package aufgabe5;
 
-import aufgabe5.PersonsDataBean;
+import aufgabe5_Factory.BusinessTier;
+import aufgabe5_Factory.BusinessTierImp;
+import aufgabe5_Factory.DataTier;
+import aufgabe5_Factory.DataTierImp;
+import aufgabe5_Factory.PersonsDataBean;
 
 import java.io.IOException;
 
@@ -10,10 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import CounterMVC.InfoDataBean;
-import CounterMVC.ListDataBean;
 
 /**
  * Servlet implementation class Aufgabe5_2
@@ -22,13 +23,9 @@ import CounterMVC.ListDataBean;
 public class Aufgabe5_2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private PersonsBean persons;
-	private static final String ACTION = "ACTION";
-	private static final int SHOW_SYSTEM = 1;
-	private static final int SHOW_RANDOM = 2;
+	private BusinessTier businessTier;
+	private DataTier dataTier;
 	private String jsp;
-	int mode = 0;
-
 
 	public Aufgabe5_2() {
 		super();
@@ -36,9 +33,7 @@ public class Aufgabe5_2 extends HttpServlet {
 	}
 
 	public void init() throws ServletException {
-
-		
-
+		businessTier = new BusinessTierImp();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,24 +43,19 @@ public class Aufgabe5_2 extends HttpServlet {
 
 		System.out.println(action);
 
-		DataTierImp myData = new DataTierImp();
-		BusinessTierImp myBusiness = new BusinessTierImp();
-		
+			
 		if (action == null) {
-			//persons = new PersonsBean();
-			myBusiness = new BusinessTierImp();
 			jsp = "./aufgabe5/Listenausgabe.jspx";
 			
 		} else {
-			//persons = new PersonsBean(action);
-			myBusiness = new BusinessTierImp(action);
+			businessTier.setData(action);
 			jsp = "./aufgabe5/Detailausgabe.jspx";
-			
 		}
 		
-		PersonsDataBean personsData = new PersonsDataBean(myData.getNames(myBusiness.getBean())); 
-
-		request.setAttribute("personsData", personsData);
+		dataTier = new DataTierImp();
+		
+		PersonsDataBean personData = new PersonsDataBean(dataTier.getNames(businessTier.getBean()));
+		request.setAttribute("personsData", personData );
 	
 		RequestDispatcher dispatcher = request.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);

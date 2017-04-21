@@ -11,7 +11,7 @@
 <H1>MyProperties</H1>
 
 		<table>
-		<jsp:useBean id="personsData" type="aufgabe5.PersonsDataBean" scope="request" />
+		<jsp:useBean id="personsData" type="aufgabe5_Factory.PersonsDataBean" scope="request" />
 		
 		<c:forEach var="item" items="${personsData.names }">
 			<tr>

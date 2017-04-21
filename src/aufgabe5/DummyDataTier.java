@@ -3,9 +3,12 @@ package aufgabe5;
 import java.util.HashMap;
 import java.util.Map;
 
+import aufgabe5_Factory.DataTier;
+import aufgabe5_Factory.PersonsBean;
+
 public class DummyDataTier implements DataTier {
 
-//	Map<String, String> myDummyMap = new HashMap<>()
+	Map<String, String> myDummyMap = new HashMap();
 	
 	
 	@Override

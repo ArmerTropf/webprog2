@@ -1,12 +1,12 @@
-package aufgabe5;
+package aufgabe5_Factory;
 
 public class BusinessTierImp implements BusinessTier {
 
 	
 	PersonsBean PBean = new PersonsBean();
 	
-	BusinessTierImp() {
-		
+	public BusinessTierImp() {
+		PBean = new PersonsBean();
 	}
 	
 	BusinessTierImp(String param) {
@@ -16,6 +16,10 @@ public class BusinessTierImp implements BusinessTier {
 	@Override
 	public PersonsBean getBean() {	
 		return PBean;
+	}
+	
+	public void setData(String param) {
+		PBean = new PersonsBean(param);
 	}
 	
 }

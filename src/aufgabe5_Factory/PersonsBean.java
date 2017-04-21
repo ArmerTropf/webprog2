@@ -1,4 +1,4 @@
-package aufgabe5;
+package aufgabe5_Factory;
 
 import java.io.File;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ import org.w3c.dom.NodeList;
 
 public class PersonsBean {
 
-	private String XML = "C:/Users/Pummi/Documents/GitHub/webprog2/WebContent/aufgabe5/persons.xml";
+	private String XML = "C:/Users/ArmerTropf/Documents/GitHub/webprog2/WebContent/aufgabe5/persons.xml";
 	private Map<String, String> names = new HashMap<String, String>();
 
 	public PersonsBean(String parameter) {
