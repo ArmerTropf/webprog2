@@ -1,19 +1,21 @@
 package aufgabe5;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PersonsDataBean  {
 
-	private Map<String,String> names;
+	private List<PersonDataBean> persons = new ArrayList<PersonDataBean>();
 	
-	public PersonsDataBean(Map<String, String> names){
-		this.names = names;
-	}
-	public PersonsDataBean(){
+	public PersonsDataBean(List<Person> persons){ 
+		
+		for (Person person : persons) {
+			this.persons.add(new PersonDataBean(person));
+		}
 		
 	}
 	
-	public Map<String, String> getNames() {
-		return names;
+	public List<PersonDataBean> getPersons() {
+		return this.persons;
 	}
 }
