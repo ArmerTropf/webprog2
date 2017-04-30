@@ -1,21 +1,35 @@
 package aufgabe5;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import aufgabe5_Factory.DataTier;
-import aufgabe5_Factory.PersonsBean;
+public class DummyDataTier<T extends Model> implements IDataTier<T> {
 
-public class DummyDataTier implements DataTier {
-
-	Map<String, String> myDummyMap = new HashMap();
-	
+	private Map<Integer, T> map = new HashMap<Integer, T>();
+	private int counter = 0;
 	
 	@Override
-	public Map<String, String> getNames(PersonsBean go) {
-		// TODO Auto-generated method stub
-		return go.getNames();
+	public List<T> getAllItems() {
+		return  new ArrayList<T>(map.values());
 	}
-	
+
+	@Override
+	public T get(int id) {
+		return map.get(id);
+	}
+
+	@Override
+	public void add(T obj) {
+		obj.setId(counter);
+		map.put(counter++, obj);
+	}
+
+	@Override
+	public void remove(T obj) {
+		map.remove(obj);
+	}
 
 }

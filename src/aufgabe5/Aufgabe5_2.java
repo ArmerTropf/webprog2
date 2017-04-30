@@ -6,16 +6,6 @@ import aufgabe5_Factory.DataTier;
 import aufgabe5_Factory.DataTierImp;
 import aufgabe5_Factory.PersonsDataBean;
 
-import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-
 /**
  * Servlet implementation class Aufgabe5_2
  */
@@ -23,41 +13,60 @@ import javax.servlet.http.HttpServletResponse;
 public class Aufgabe5_2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private BusinessTier businessTier;
-	private DataTier dataTier;
-	private String jsp;
-
+	private PersonsBean persons;
+	
 	public Aufgabe5_2() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public void init() throws ServletException {
-		businessTier = new BusinessTierImp();
+
+		persons = new PersonsBean(new PersonDummyDataTier());
+
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String action = request.getParameter("action");	
+		String jsp = "./aufgabe5/start.jspx";
 
-		System.out.println(action);
+		try {
 
-			
-		if (action == null) {
-			jsp = "./aufgabe5/Listenausgabe.jspx";
-			
-		} else {
-			businessTier.setData(action);
-			jsp = "./aufgabe5/Detailausgabe.jspx";
+			String action = request.getParameter("action");
+
+			System.out.println(action);
+
+			switch (action) {
+			case "start":
+
+				break;
+			case "liste":
+
+				PersonsDataBean personsData = new PersonsDataBean(persons.getAllPersons());
+				request.setAttribute("personsData", personsData);
+				jsp = "./aufgabe5/Listenausgabe.jspx";
+				break;
+
+			case "detail":
+				int id = Integer.parseInt(request.getParameter("id"));
+				Person person = persons.getPerson(id);
+				if (person == null)
+					break;
+				PersonDataBean personData = new PersonDataBean(person);
+				request.setAttribute("personData", personData);
+				jsp = "./aufgabe5/Detailausgabe.jspx";
+				break;
+
+			default:
+				break;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		dataTier = new DataTierImp();
-		
-		PersonsDataBean personData = new PersonsDataBean(dataTier.getNames(businessTier.getBean()));
-		request.setAttribute("personsData", personData );
-	
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher(jsp);
+
 		dispatcher.forward(request, response);
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());

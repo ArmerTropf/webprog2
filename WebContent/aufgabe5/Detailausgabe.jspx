@@ -11,14 +11,14 @@
 <H1>MyProperties</H1>
 
 		<table>
-		<jsp:useBean id="personsData" type="aufgabe5_Factory.PersonsDataBean" scope="request" />
-		
-		<c:forEach var="item" items="${personsData.names }">
+
+		<jsp:useBean id="personData" type="aufgabe5.PersonDataBean" scope="request" />
 			<tr>
-				<td>${item.key}</td>
-				<td>${item.value}</td>
+				<td>${personData.vorname}</td>
+				<td>${personData.nachname}</td>
+				<td>${personData.wohnort}</td>
 			</tr>
-		</c:forEach>
+		
 	</table>
 </body>
 </html>

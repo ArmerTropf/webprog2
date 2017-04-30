@@ -10,10 +10,10 @@
 <body>
 	<H1>Auswahl</H1>
 
-	<a href="./Aufgabe5_2"> Listenausgabe </a>
+	<a href="./Aufgabe5_2?action=liste"> Listenausgabe </a>
 	<br />
-	<form action="./Aufgabe5_2" method="POST">
-		<input type="text" name="action" /> 
+	<form action="./Aufgabe5_2?action=detail" method="POST">
+		<input type="text" name="name" /> 
 		<input type="submit" value="suche" />
 	</form>
 </body>

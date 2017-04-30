@@ -14,10 +14,10 @@
 			<jsp:useBean id="personsData" type="aufgabe5_Factory.PersonsDataBean"
 				scope="request" />
 
-			<c:forEach var="item" items="${personsData.names }">
+			<c:forEach var="item" items="${personsData.persons}">
 				<tr>
-					<td><a href="./Aufgabe5_2?action=${item.key}">${item.key}</a></td>
-					<td>${item.value}</td>
+					<td><a href="./Aufgabe5_2?action=detail&amp;id=${item.id}">${item.vorname}</a></td>
+					<td>${item.nachname}</td>
 				</tr>
 			</c:forEach>
 		</table>
