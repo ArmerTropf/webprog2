@@ -1,4 +1,4 @@
-package aufgabe5;
+package aufgabe5.controller;
 
 import java.io.IOException;
 
@@ -8,6 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import aufgabe5.businessTier.PersonsBean;
+import aufgabe5.businessTier.PersonsFactory;
+import aufgabe5.dataBeans.PersonDataBean;
+import aufgabe5.dataBeans.PersonsDataBean;
+import aufgabe5.dataTier.PersonDummyDataTier;
+import aufgabe5.model.Person;
 
 /**
  * Servlet implementation class Aufgabe5_2
@@ -26,7 +33,9 @@ public class Aufgabe5_2 extends HttpServlet {
 
 	public void init() throws ServletException {
 
-		persons = new PersonsBean(new PersonDummyDataTier());
+//		persons = new PersonsBean(new PersonDummyDataTier());
+//		persons = PersonsFactory.getNewDummyPersonsBean();
+		persons = PersonsFactory.getNewXMLPersonsBean();
 
 	}
 
@@ -38,10 +47,10 @@ public class Aufgabe5_2 extends HttpServlet {
 		try {
 
 			String action = request.getParameter("action");
-
+			
 			System.out.println(action);
 
-			switch (action) {
+			switch (action ) {
 			case "start":
 
 				break;
@@ -59,6 +68,18 @@ public class Aufgabe5_2 extends HttpServlet {
 					break;
 				PersonDataBean personData = new PersonDataBean(person);
 				request.setAttribute("personData", personData);
+				jsp = "./aufgabe5/Detailausgabe.jspx";
+				break;
+				
+			case "search":
+				String name = request.getParameter("name");
+				
+				Person person1 = persons.getPersonByName(name);
+				
+				if (person1 == null)
+					break;
+				PersonDataBean personData1 = new PersonDataBean(person1);
+				request.setAttribute("personData", personData1);
 				jsp = "./aufgabe5/Detailausgabe.jspx";
 				break;
 

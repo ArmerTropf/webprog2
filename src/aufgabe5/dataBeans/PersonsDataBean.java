@@ -1,7 +1,9 @@
-package aufgabe5;
+package aufgabe5.dataBeans;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import aufgabe5.model.Person;
 
 public class PersonsDataBean  {
 

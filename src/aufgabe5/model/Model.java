@@ -1,4 +1,4 @@
-package aufgabe5;
+package aufgabe5.model;
 
 public class Model {
 	private int id;

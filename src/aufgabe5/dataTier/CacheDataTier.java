@@ -1,4 +1,4 @@
-package aufgabe5;
+package aufgabe5.dataTier;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DummyDataTier<T extends Model> implements IDataTier<T> {
+import aufgabe5.model.Model;
+
+public class CacheDataTier<T extends Model> implements IDataTier<T> {
 
 	private Map<Integer, T> map = new HashMap<Integer, T>();
 	private int counter = 0;

@@ -1,7 +1,8 @@
-package aufgabe5;
+package aufgabe5.dataTier;
 
-import java.util.Collection;
 import java.util.List;
+
+import aufgabe5.model.Model;
 
 public interface IDataTier<T extends Model> {
 	

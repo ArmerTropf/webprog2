@@ -11,7 +11,7 @@
 	<H1>MyProperties</H1>
 	<form action="">
 		<table>
-			<jsp:useBean id="personsData" type="aufgabe5.PersonsDataBean"
+			<jsp:useBean id="personsData" type="aufgabe5.dataBeans.PersonsDataBean"
 				scope="request" />
 
 			<c:forEach var="item" items="${personsData.persons}">

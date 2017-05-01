@@ -1,6 +1,8 @@
-package aufgabe5;
+package aufgabe5.dataTier;
 
-public class PersonDummyDataTier extends DummyDataTier<Person> {
+import aufgabe5.model.Person;
+
+public class PersonDummyDataTier extends CacheDataTier<Person> {
 	
 	public PersonDummyDataTier(){
 		Person person = new Person();

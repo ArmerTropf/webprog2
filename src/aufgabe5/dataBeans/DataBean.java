@@ -1,4 +1,6 @@
-package aufgabe5;
+package aufgabe5.dataBeans;
+
+import aufgabe5.model.Model;
 
 public abstract class DataBean<T extends Model> {
 	
