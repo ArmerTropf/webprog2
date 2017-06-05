@@ -1,13 +1,19 @@
-package aufgabe5.model;
+package aufgabe9;
 
-public class Person extends Model {
-
+public class Person {
 
 	private String vorname;
 	private String nachname;
 	private String wohnort;
 	
+	public Person(){}
 	
+	public Person(String vorname, String nachname, String wohnort) {
+		this.vorname = vorname;
+		this.nachname = nachname;
+		this.wohnort = wohnort;
+	}
+		
 	public String getVorname() {
 		return vorname;
 	}
