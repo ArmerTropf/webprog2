@@ -20,8 +20,8 @@
 	<servlet-mapping>
 		<servlet-name>start</servlet-name>
 		<url-pattern>/start/*</url-pattern>
-	</servlet-mapping >
-	
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>listenausgabe</servlet-name>
 		<jsp-file>/aufgabe5/Listenausgabe.jspx</jsp-file>
@@ -30,8 +30,8 @@
 	<servlet-mapping>
 		<servlet-name>listenausgabe</servlet-name>
 		<url-pattern>/listenausgabe/*</url-pattern>
-	</servlet-mapping >
-	
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>detailausgabe</servlet-name>
 		<jsp-file>/aufgabe5/Detailausgabe.jspx</jsp-file>
@@ -40,5 +40,14 @@
 	<servlet-mapping>
 		<servlet-name>detailausgabe</servlet-name>
 		<url-pattern>/detailausgabe/*</url-pattern>
-	</servlet-mapping >
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>JAX-RS</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JAX-RS</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 </web-app>

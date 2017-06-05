@@ -1,19 +1,16 @@
-package aufgabe9;
+package aufgabe9.model;
 
-public class Person {
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
+public class Person extends Model {
+
+	
 	private String vorname;
 	private String nachname;
 	private String wohnort;
 	
-	public Person(){}
 	
-	public Person(String vorname, String nachname, String wohnort) {
-		this.vorname = vorname;
-		this.nachname = nachname;
-		this.wohnort = wohnort;
-	}
-		
 	public String getVorname() {
 		return vorname;
 	}
