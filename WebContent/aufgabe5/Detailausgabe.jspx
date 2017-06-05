@@ -11,8 +11,7 @@
 <H1>MyProperties</H1>
 
 		<table>
-
-		<jsp:useBean id="personData" type="aufgabe5.PersonDataBean" scope="request" />
+		<jsp:useBean id="personData" type="aufgabe5.dataBeans.PersonDataBean" scope="request" />
 			<tr>
 				<td>${personData.vorname}</td>
 				<td>${personData.nachname}</td>
