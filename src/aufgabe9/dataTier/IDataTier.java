@@ -14,6 +14,6 @@ public interface IDataTier<T extends Model> {
 	
 	public void add(T obj);
 	
-	public void remove(T obj);
+	public void remove(int id);
 	
 }

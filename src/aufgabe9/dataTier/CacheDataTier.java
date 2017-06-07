@@ -30,8 +30,8 @@ public class CacheDataTier<T extends Model> implements IDataTier<T> {
 	}
 
 	@Override
-	public void remove(T obj) {
-		map.remove(obj);
+	public void remove(int id) {
+		map.remove(id);
 	}
 
 	@Override

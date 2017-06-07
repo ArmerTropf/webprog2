@@ -3,44 +3,106 @@ package aufgabe9;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import com.sun.jersey.spi.resource.Singleton;
 
 import aufgabe9.businessTier.PersonsBean;
 import aufgabe9.businessTier.PersonsFactory;
-import aufgabe9.model.*;
+import aufgabe9.model.Person;
 
 @Path("/9_1")
-@XmlRootElement
+@Singleton
 public class Aufgabe9_1a {
 	
 	public PersonsBean persons;
-	List<Person> personList = new ArrayList<Person>();  
 	
 	public Aufgabe9_1a() {
-		persons = PersonsFactory.getNewXMLPersonsBean();
-		personList = persons.getAllPersons();
-		
+
 	}
 	
+	@PostConstruct
+	public void init() {
+		System.out.println("schreibe Neu     ");
+		persons = PersonsFactory.getNewXMLPersonsBean();		
+	}
 	
 	@GET
-	@Path("/getPersonsXml")
-	@Produces("text/xml")
+	@Path("/persons")
+	@Produces({"text/xml","application/json"})
 	public List<Person> getXml() {
-			
-		return personList;
+		
+		return persons.getAllPersons();
 	}
 	
 	@GET
-	@Path("/getPersonsJSON")
-	@Produces("text/json")
-	public List<Person> getJSON() {
-			
-		return personList;
+	@Path("/persons/firstname/{firstname}")
+	@Produces({"text/xml","application/json"})
+	public List<Person> getPersonByFirstName(@PathParam("firstname") String firstname) {
+		Person person1 = null;
+		person1 = persons.getPersonByFirstName(firstname);
+		
+		List<Person> go = new ArrayList<Person>();
+		go.add(person1);
+		
+		return go;
 	}
 	
+	@DELETE
+	@Path("/persons/firstname/{firstname}")
+	@Produces({"text/xml","application/json"})
+	public List<Person> deletePersonByName(@PathParam("firstname") String firstname) {
+		persons.removeByName(firstname);
+		return persons.getAllPersons();
+	}
+	
+	
+	@GET
+	@Path("/persons/lastname/{lastname}")
+	@Produces({"text/xml","application/json"})
+	public List<Person> getPersonByLastname(@PathParam("lastname") String lastname) {
+		Person person1 = null;
+		person1 = persons.getPersonByLastName(lastname);
+		
+		List<Person> go = new ArrayList<Person>();
+		go.add(person1);
+		
+		return go;
+	}
+	
+	@GET
+	@Path("/persons/residence/{residence}")
+	@Produces({"text/xml","application/json"})
+	public List<Person> getPersonByResidence(@PathParam("residence") String residence) {
+		Person person1 = null;
+		person1 = persons.getPersonByResidence(residence);
+		
+		List<Person> go = new ArrayList<Person>();
+		go.add(person1);
+		
+		return go;
+	}
+	
+	@DELETE
+	@Path("/persons/{id}")
+	@Produces({"text/xml","application/json"})
+	public List<Person> deletePerson(@PathParam("id") int id) {
+		persons.removeById(id);
+		return persons.getAllPersons();
+	}
+	
+	@PUT
+	@Path("/persons/{firstname}/{lastname}/{residence}")
+	@Produces({"text/xml","application/json"})
+	public List<Person> addPerson(@PathParam("firstname") String firstname, @PathParam("lastname") String lastname, @PathParam("residence") String residence) {
+		persons.addPersonToList(firstname, lastname, residence);
+		return persons.getAllPersons();
+	}
 	
 }
