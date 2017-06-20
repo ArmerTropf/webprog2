@@ -50,4 +50,34 @@
 		<servlet-name>JAX-RS</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+
+	<!-- Context listener -->
+ 
+<!-- 	<listener>
+		<listener-class>rest.CounterAdminContextListener</listener-class>
+	</listener>
+	Context parameters fuer CounterInit02
+	<context-param>
+		read by context listener
+		<param-name>counterFileName02</param-name>
+		<param-value>/src/aufgabe10/foo.txt</param-value>
+	</context-param>
+
+
+	Context parameters fuer CounterInit03
+	<context-param>
+		read by context listener
+		<param-name>counterFileName03</param-name>
+		<param-value>/src/aufgabe10/foo.txt</param-value>
+	</context-param>
+	<context-param>
+		read by context listener
+		<param-name>counterFactoryClass</param-name>
+		<param-value>CounterAdminImplFile</param-value>
+		<param-value>rest.CounterAdminImplDummy</param-value>
+		<param-value>rest.CounterAdminImplError</param-value>
+	</context-param> -->
+
+
+
 </web-app>
